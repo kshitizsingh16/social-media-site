@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <h1>Sign Up</h1>
+    <form action="/user/create" method="post">
+        
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="enter your name" required><br>
+
+        <label for="email">Email id</label>
+        <input type="email" name="email" placeholder="enter your email" required><br>
+
+        <label for="phone">Phone No.</label>
+        <input type="number" name="phone" placeholder="enter your phone number" required><br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="password" required><br>
+
+        <label for="confirm_password">confirm Password</label>
+        <input type="password" name="confirm_password" placeholder="password" required><br>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>

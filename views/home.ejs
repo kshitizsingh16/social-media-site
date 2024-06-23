@@ -1,0 +1,63 @@
+<h1>Home Page</h1>
+
+
+<section id="feed-post">
+    <h1>Post</h1>
+    <% if(locals.user){ %>
+        <form action="/post/content" id="new-post-form" method="post">
+            <textarea name="content" id="" cols="30" rows="10" placeholder="Comments" required></textarea>
+            <button type="submit">Post</button>
+        </form>
+        <% } %>
+            <div id="posts-list-container">
+                
+                <ul>
+                    <p>
+                        <% posts.forEach((post)=>{ %>
+                            <li>
+                                <% if(locals.user && locals.user.id == post.user.id){ %>
+                                    <small>
+                                        <a href="/post/destroy/<%=post.id%>" style="color: white;">X</a>
+                                    </small>
+                                <% } %>
+                                <%= post.content %>
+                            </li><br>
+                            <small>
+                                <%= post.user.name %>
+                            </small>
+
+
+
+                            <div class="post-comments">
+                                <% if(locals.user){ %>
+                                    <form action="/comment/create" method="post">
+                                        <input type="text" name="content" placeholder="Add comment" required>
+                                        <input type="hidden" name="post" value="<%= post._id %>">
+                                        <input type="submit" value="Add comment">
+                                    </form>
+                                    <% } %>
+        
+                                        <div class="post-comments-list">
+                                            <ul id="post-comment-<%=post._id%>">
+                                                <% post?.comments?.map((comment)=>{ %>
+                                                    <p>
+                                                        <% if(locals.user && locals.user.id == comment.user.id){ %>
+                                                            <small>
+                                                                <a href="/comment/destroy/<%=comment.id%>">X</a>
+                                                            </small>
+                                                        <% } %>
+                                                        <%= comment.content %>
+                                                            <small>
+                                                                <%= comment.user.name %>
+                                                            </small>
+                                                    </p>
+                                                    <% }) %>
+                                            </ul>
+                                        </div>
+                            </div>
+                            <% }) %>
+                    </p>
+                    
+                </ul>
+            </div>
+</section>

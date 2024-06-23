@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <h1> <%= title %> </h1>
+    <div>
+        <h1><%=profile_user.name%></h1>
+        <h1><%=profile_user.email%></h1>
+        <h1><%=Profile_user.phone%></h1>
+    </div>
+    <% if(locals.user && locals.user.id == profile_user.id){ %>
+        <!-- creating a form to update the user detail for the user -->
+        <form action="/user/update/<%=profile.user.id%>" method="post">
+            <input type="text" name="name" value="<%=profile_user.name%>" placeholder="Your Name" required>
+            <input type="email" name="email" value="<%=profile_user.email%>" placeholder="Your Email" required>
+            <input type="submit" value="Update Profile">
+        </form>
+        <button>
+            <a href="/user/sign-out">Sign Out</a>
+        </button>
+    <% } %>
+</body>
+</html>
